@@ -1,0 +1,8 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {"label": "Run tests", "type": "shell", "command": "python -m pytest -q", "problemMatcher": []},
+    {"label": "Offline execution check", "type": "shell", "command": "python -m gan_vae smoke --overwrite", "problemMatcher": []},
+    {"label": "Train on MNIST (quick)", "type": "shell", "command": "python -m gan_vae train --preset quick --download --overwrite", "problemMatcher": []}
+  ]
+}
