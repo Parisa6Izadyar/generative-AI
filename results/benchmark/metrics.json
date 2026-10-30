@@ -1,0 +1,640 @@
+{
+  "schema_version": 1,
+  "run_type": "fixed-budget MNIST comparison",
+  "config": {
+    "preset": "full",
+    "seed": 42,
+    "train_samples": 60000,
+    "eval_samples": 5000,
+    "judge_epochs": 5,
+    "vae_epochs": 50,
+    "gan_epochs": 50,
+    "latent_dim": 20,
+    "batch_size": 128,
+    "eval_batch_size": 256,
+    "threads": 2,
+    "device": "cpu"
+  },
+  "data": {
+    "dataset": "MNIST",
+    "official_train_size": 60000,
+    "official_test_size": 10000,
+    "train_samples": 60000,
+    "reference_samples": 5000,
+    "real_comparison_samples": 5000,
+    "train_indices_sha256": "7481f5ab55c7ee885c632b5df49960f264549faafad03e5395d9091486086a2f",
+    "reference_indices_sha256": "72720c451c5a218c58d59ee78b1a9f54eb3c7fb2263b5b275aac15366de2b4e4",
+    "raw_file_sha256": {
+      "t10k-images-idx3-ubyte": "0fa7898d509279e482958e8ce81c8e77db3f2f8254e26661ceb7762c4d494ce7",
+      "t10k-labels-idx1-ubyte": "ff7bcfd416de33731a308c3f266cc351222c34898ecbeaf847f06e48f7ec33f2",
+      "train-images-idx3-ubyte": "ba891046e6505d7aadcbbe25680a0738ad16aec93bde7f9b65e87a2fc25776db",
+      "train-labels-idx1-ubyte": "65a50cbbf4e906d70832878ad85ccda5333a97f0f4c3dd2ef09a8a9eef7101c5"
+    },
+    "normalization": "uint8 / 127.5 - 1",
+    "reference_partition": "official test; disjoint reference and real-comparison subsets"
+  },
+  "judge_test_accuracy": 0.9905,
+  "judge_test_samples": 10000,
+  "evaluation": {
+    "real_reference": {
+      "mean_max_probability": 0.9901657543182373,
+      "predicted_class_counts": [
+        492,
+        579,
+        517,
+        522,
+        485,
+        439,
+        464,
+        528,
+        483,
+        491
+      ],
+      "predicted_class_entropy_nats": 2.2999161624241484,
+      "normalized_class_entropy": 0.9988408981809106,
+      "predicted_classes_present": 10
+    },
+    "vae": {
+      "mean_max_probability": 0.7989144366383553,
+      "predicted_class_counts": [
+        417,
+        339,
+        743,
+        703,
+        343,
+        578,
+        294,
+        512,
+        527,
+        544
+      ],
+      "predicted_class_entropy_nats": 2.2604757863123277,
+      "normalized_class_entropy": 0.981712160471358,
+      "predicted_classes_present": 10,
+      "cnn_frechet_distance": 224.3124666946442
+    },
+    "gan": {
+      "mean_max_probability": 0.9204831701159477,
+      "predicted_class_counts": [
+        238,
+        629,
+        270,
+        775,
+        479,
+        435,
+        319,
+        716,
+        421,
+        718
+      ],
+      "predicted_class_entropy_nats": 2.2303879110063782,
+      "normalized_class_entropy": 0.968645162253791,
+      "predicted_classes_present": 10,
+      "cnn_frechet_distance": 56.99130196345057
+    },
+    "real_comparison": {
+      "mean_max_probability": 0.989951047450304,
+      "predicted_class_counts": [
+        492,
+        560,
+        519,
+        494,
+        485,
+        455,
+        487,
+        496,
+        498,
+        514
+      ],
+      "predicted_class_entropy_nats": 2.301260749339663,
+      "normalized_class_entropy": 0.9994248448587578,
+      "predicted_classes_present": 10,
+      "cnn_frechet_distance": 1.5449206720252753
+    },
+    "uniform_noise": {
+      "mean_max_probability": 0.7281797993183136,
+      "predicted_class_counts": [
+        0,
+        0,
+        3115,
+        1548,
+        0,
+        36,
+        0,
+        0,
+        301,
+        0
+      ],
+      "predicted_class_entropy_nats": 0.8624964973057045,
+      "normalized_class_entropy": 0.3745774694407504,
+      "predicted_classes_present": 4,
+      "cnn_frechet_distance": 1123.5248160590677
+    }
+  },
+  "history": {
+    "judge": [
+      {
+        "loss": 0.2853439412554105,
+        "accuracy": 0.9152666666666667
+      },
+      {
+        "loss": 0.06835906501015028,
+        "accuracy": 0.9790666666666666
+      },
+      {
+        "loss": 0.048101087700327234,
+        "accuracy": 0.9852
+      },
+      {
+        "loss": 0.036028124779711165,
+        "accuracy": 0.9888666666666667
+      },
+      {
+        "loss": 0.028626543480157852,
+        "accuracy": 0.9913666666666666
+      }
+    ],
+    "vae": [
+      {
+        "total": 120.96941327718099,
+        "reconstruction": 98.43620537312826,
+        "kl": 22.533208193969728
+      },
+      {
+        "total": 82.22271549072265,
+        "reconstruction": 55.335104630533856,
+        "kl": 26.88761081237793
+      },
+      {
+        "total": 76.98242216389974,
+        "reconstruction": 49.48161492513021,
+        "kl": 27.500807408650715
+      },
+      {
+        "total": 74.48755052897135,
+        "reconstruction": 46.71107553710937,
+        "kl": 27.77647487386068
+      },
+      {
+        "total": 72.87427333577475,
+        "reconstruction": 44.95612915649414,
+        "kl": 27.918144033813476
+      },
+      {
+        "total": 71.72693933919271,
+        "reconstruction": 43.713408677164715,
+        "kl": 28.01353045349121
+      },
+      {
+        "total": 70.7729610921224,
+        "reconstruction": 42.70039007364909,
+        "kl": 28.072570833333334
+      },
+      {
+        "total": 70.24816096598308,
+        "reconstruction": 42.06404350789388,
+        "kl": 28.184117495727538
+      },
+      {
+        "total": 69.66691420084635,
+        "reconstruction": 41.447630849202476,
+        "kl": 28.2192833404541
+      },
+      {
+        "total": 69.12214244384765,
+        "reconstruction": 40.86182631429036,
+        "kl": 28.260316134643556
+      },
+      {
+        "total": 68.7649744506836,
+        "reconstruction": 40.487508154296876,
+        "kl": 28.277466380818684
+      },
+      {
+        "total": 68.30490814208984,
+        "reconstruction": 39.984197212727864,
+        "kl": 28.320710962931315
+      },
+      {
+        "total": 67.9842739054362,
+        "reconstruction": 39.65988242594401,
+        "kl": 28.32439163004557
+      },
+      {
+        "total": 67.66616107584636,
+        "reconstruction": 39.332454587809245,
+        "kl": 28.333706285603842
+      },
+      {
+        "total": 67.32653633626302,
+        "reconstruction": 38.973674416097005,
+        "kl": 28.35286187235514
+      },
+      {
+        "total": 67.14279350585937,
+        "reconstruction": 38.767301767985025,
+        "kl": 28.375491482543946
+      },
+      {
+        "total": 66.9283513671875,
+        "reconstruction": 38.54404006754557,
+        "kl": 28.38431124674479
+      },
+      {
+        "total": 66.68979799804687,
+        "reconstruction": 38.29715991414388,
+        "kl": 28.392638000488283
+      },
+      {
+        "total": 66.44465824788412,
+        "reconstruction": 38.036621339925134,
+        "kl": 28.40803693745931
+      },
+      {
+        "total": 66.25692262776693,
+        "reconstruction": 37.885366878255205,
+        "kl": 28.371555683390298
+      },
+      {
+        "total": 66.04722443440755,
+        "reconstruction": 37.64988387654623,
+        "kl": 28.39734050394694
+      },
+      {
+        "total": 65.92827477620443,
+        "reconstruction": 37.5313525390625,
+        "kl": 28.39692210184733
+      },
+      {
+        "total": 65.76899679361979,
+        "reconstruction": 37.35829862263997,
+        "kl": 28.4106981842041
+      },
+      {
+        "total": 65.62798190104166,
+        "reconstruction": 37.221814595540366,
+        "kl": 28.406167305501302
+      },
+      {
+        "total": 65.38813122151693,
+        "reconstruction": 37.01738734741211,
+        "kl": 28.370743842569986
+      },
+      {
+        "total": 65.30161934407552,
+        "reconstruction": 36.88960308024089,
+        "kl": 28.41201639404297
+      },
+      {
+        "total": 65.12915671386719,
+        "reconstruction": 36.7051280456543,
+        "kl": 28.424028821818034
+      },
+      {
+        "total": 65.06717370605469,
+        "reconstruction": 36.65383803100586,
+        "kl": 28.413335689290363
+      },
+      {
+        "total": 64.89203361409506,
+        "reconstruction": 36.48522016805013,
+        "kl": 28.406813518269857
+      },
+      {
+        "total": 64.70220380859375,
+        "reconstruction": 36.33459165242513,
+        "kl": 28.367612239583334
+      },
+      {
+        "total": 64.61821967773437,
+        "reconstruction": 36.22229498087565,
+        "kl": 28.395924678548177
+      },
+      {
+        "total": 64.5786215250651,
+        "reconstruction": 36.18708784383138,
+        "kl": 28.391533764648436
+      },
+      {
+        "total": 64.42730787760416,
+        "reconstruction": 36.054438100179034,
+        "kl": 28.372869568888348
+      },
+      {
+        "total": 64.3614861328125,
+        "reconstruction": 35.94656252441406,
+        "kl": 28.4149236134847
+      },
+      {
+        "total": 64.27306694742839,
+        "reconstruction": 35.85717456665039,
+        "kl": 28.41589237976074
+      },
+      {
+        "total": 64.1273955485026,
+        "reconstruction": 35.7561375,
+        "kl": 28.37125797220866
+      },
+      {
+        "total": 64.05746838378906,
+        "reconstruction": 35.66148714396159,
+        "kl": 28.395981204223634
+      },
+      {
+        "total": 64.05068884684245,
+        "reconstruction": 35.63714169921875,
+        "kl": 28.413547223917643
+      },
+      {
+        "total": 63.89527510579427,
+        "reconstruction": 35.501661029052734,
+        "kl": 28.393613928222656
+      },
+      {
+        "total": 63.80929347127279,
+        "reconstruction": 35.45963500366211,
+        "kl": 28.349658467610677
+      },
+      {
+        "total": 63.82118954671224,
+        "reconstruction": 35.41741260172526,
+        "kl": 28.40377695719401
+      },
+      {
+        "total": 63.65753037516276,
+        "reconstruction": 35.30161722208659,
+        "kl": 28.355913082885742
+      },
+      {
+        "total": 63.6169101155599,
+        "reconstruction": 35.256998665364584,
+        "kl": 28.359911555989584
+      },
+      {
+        "total": 63.529733284505205,
+        "reconstruction": 35.144506772867835,
+        "kl": 28.38522653910319
+      },
+      {
+        "total": 63.486412862141925,
+        "reconstruction": 35.08409150390625,
+        "kl": 28.402321306355795
+      },
+      {
+        "total": 63.39484216105143,
+        "reconstruction": 35.0503524230957,
+        "kl": 28.344489778645833
+      },
+      {
+        "total": 63.43505538736979,
+        "reconstruction": 35.07676219685872,
+        "kl": 28.35829314778646
+      },
+      {
+        "total": 63.29421189168294,
+        "reconstruction": 34.92454966430664,
+        "kl": 28.36966231689453
+      },
+      {
+        "total": 63.21284677124024,
+        "reconstruction": 34.85038371785482,
+        "kl": 28.362463049316407
+      },
+      {
+        "total": 63.21769763590495,
+        "reconstruction": 34.86134904785156,
+        "kl": 28.356348568725586
+      }
+    ],
+    "gan": [
+      {
+        "generator": 1.2283307067235312,
+        "discriminator": 0.4883233984629313
+      },
+      {
+        "generator": 1.8504665749867757,
+        "discriminator": 0.41346752071380616
+      },
+      {
+        "generator": 2.0377635897318522,
+        "discriminator": 0.3779896652539571
+      },
+      {
+        "generator": 2.21056460647583,
+        "discriminator": 0.36473634475072225
+      },
+      {
+        "generator": 2.3167701287587485,
+        "discriminator": 0.3488743049780528
+      },
+      {
+        "generator": 2.49987454662323,
+        "discriminator": 0.3324375552813212
+      },
+      {
+        "generator": 2.4949444244384766,
+        "discriminator": 0.332064838997523
+      },
+      {
+        "generator": 2.3923287865956624,
+        "discriminator": 0.3326899159749349
+      },
+      {
+        "generator": 2.3906783580144246,
+        "discriminator": 0.3410042219956716
+      },
+      {
+        "generator": 2.217626622390747,
+        "discriminator": 0.350769677623113
+      },
+      {
+        "generator": 2.081188102086385,
+        "discriminator": 0.37631575949986773
+      },
+      {
+        "generator": 1.826430132039388,
+        "discriminator": 0.4203931042035421
+      },
+      {
+        "generator": 1.6664110637664795,
+        "discriminator": 0.4521340965270996
+      },
+      {
+        "generator": 1.543131828625997,
+        "discriminator": 0.4772915244579315
+      },
+      {
+        "generator": 1.437516477394104,
+        "discriminator": 0.4967470030466716
+      },
+      {
+        "generator": 1.4014391995747884,
+        "discriminator": 0.5041508669217427
+      },
+      {
+        "generator": 1.3609341502825418,
+        "discriminator": 0.5147331026713053
+      },
+      {
+        "generator": 1.3386674440383912,
+        "discriminator": 0.5194797445297241
+      },
+      {
+        "generator": 1.2998514755249024,
+        "discriminator": 0.527250396903356
+      },
+      {
+        "generator": 1.2785723280588785,
+        "discriminator": 0.5328897947470347
+      },
+      {
+        "generator": 1.2588907557169597,
+        "discriminator": 0.5356041820208232
+      },
+      {
+        "generator": 1.2430606664657593,
+        "discriminator": 0.5388849895477295
+      },
+      {
+        "generator": 1.2201665344874064,
+        "discriminator": 0.5452879739443461
+      },
+      {
+        "generator": 1.2064889770507812,
+        "discriminator": 0.5455205965042115
+      },
+      {
+        "generator": 1.2040705642064413,
+        "discriminator": 0.5473085354328155
+      },
+      {
+        "generator": 1.1943717312812805,
+        "discriminator": 0.5489483833630879
+      },
+      {
+        "generator": 1.197451489575704,
+        "discriminator": 0.547210824362437
+      },
+      {
+        "generator": 1.1983385678927103,
+        "discriminator": 0.55053654311498
+      },
+      {
+        "generator": 1.190988457107544,
+        "discriminator": 0.5508758279164632
+      },
+      {
+        "generator": 1.1860565590540568,
+        "discriminator": 0.5529157864252726
+      },
+      {
+        "generator": 1.1935273146947225,
+        "discriminator": 0.5511402223587036
+      },
+      {
+        "generator": 1.1870904161453246,
+        "discriminator": 0.549411664613088
+      },
+      {
+        "generator": 1.1924286614735922,
+        "discriminator": 0.5484653919855753
+      },
+      {
+        "generator": 1.1962921438217162,
+        "discriminator": 0.5463405502637227
+      },
+      {
+        "generator": 1.2087085098266601,
+        "discriminator": 0.544402458000183
+      },
+      {
+        "generator": 1.2020691139856974,
+        "discriminator": 0.5455933802922567
+      },
+      {
+        "generator": 1.2076335189183554,
+        "discriminator": 0.5410678402582805
+      },
+      {
+        "generator": 1.214122767575582,
+        "discriminator": 0.5425192973454793
+      },
+      {
+        "generator": 1.2184308401425679,
+        "discriminator": 0.5389829280217489
+      },
+      {
+        "generator": 1.2239088680903116,
+        "discriminator": 0.5349104993820191
+      },
+      {
+        "generator": 1.2328081335067749,
+        "discriminator": 0.5359630205790202
+      },
+      {
+        "generator": 1.2423625565210978,
+        "discriminator": 0.5320001775741577
+      },
+      {
+        "generator": 1.2502301043828328,
+        "discriminator": 0.5295721803188324
+      },
+      {
+        "generator": 1.2603381845474244,
+        "discriminator": 0.5296376435279846
+      },
+      {
+        "generator": 1.2698020492871602,
+        "discriminator": 0.5254204165140788
+      },
+      {
+        "generator": 1.271270513089498,
+        "discriminator": 0.5248572489420573
+      },
+      {
+        "generator": 1.2828481138865153,
+        "discriminator": 0.5202275676091512
+      },
+      {
+        "generator": 1.294379047648112,
+        "discriminator": 0.5202089777628581
+      },
+      {
+        "generator": 1.2952840229670206,
+        "discriminator": 0.5188593683242798
+      },
+      {
+        "generator": 1.3046489093144735,
+        "discriminator": 0.5164969460805258
+      }
+    ]
+  },
+  "environment": {
+    "python": "3.12.15",
+    "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "torch": "2.9.1+cpu",
+    "torchvision": "0.24.1+cpu",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.8"
+  },
+  "source_sha256": {
+    "__init__.py": "27f2338be5b81d30af2546d4d55b7fe171d857f796e1a94ede2b91d7c5ae894e",
+    "__main__.py": "cd05630d13047e037e67739dced75222cdb3a4232ac29debe0f51da56315afe6",
+    "data.py": "67f0b5d9bb13b38bdd27e78ecb43cee5b9e2fdb4f9af3bb03e7445f9643b456b",
+    "experiment.py": "9a5e34fb86b8b5c384b7d509e80f3880f8981bd7cfe8f48b644706031c030bb5",
+    "metrics.py": "529bdf2b8e617bb3febd4a58d049c051c72b9c152e8571db59f87fa9fdf4c7ce",
+    "models.py": "7326decc315b8ec0a5681b5780433df233fa4536e31344ef26ddc490074418bc",
+    "plots.py": "211c3bf47fdfac0d85704d8459b2391b6dd0089acdf2bdd5f21f85a69872b41e",
+    "progress.py": "e85f2c175f559783391aec945f13b5deffe395f1f0a0059a297afa4e4496741a",
+    "training.py": "1f6a831f16e83a12fe37ecc511962fea9fc93bf1b701ff240caca84a44d48e8b"
+  },
+  "limitations": [
+    "One seed; no estimate of variation across independent training runs.",
+    "CNN feature distance is evaluator-specific and is not standard Inception FID.",
+    "Classifier confidence is not calibrated image quality.",
+    "Predicted-class entropy does not measure within-class diversity or rule out memorization.",
+    "Equal epochs and latent dimension do not equalize parameters, compute or optimization difficulty.",
+    "Fixed budgets and final checkpoints; no test-driven hyperparameter or checkpoint selection."
+  ],
+  "invocation_seconds": 498.106
+}

@@ -4,6 +4,25 @@ An independent academic project comparing two small generative models for handwr
 
 The comparison includes generated samples, latent interpolation, training curves and predicted digit distributions. The experiment records its settings, data checksums and source hashes, and saves the trained models for inference.
 
+## Recorded full run
+
+Seed 42, 60,000 training images, 50 epochs per generative model and 5,000 generated images per model. The frozen digit classifier reached 99.05% accuracy on the 10,000 real test images. That accuracy evaluates the classifier, not either generative model.
+
+| Image set | CNN Fréchet distance | Mean classifier confidence | Predicted-class entropy (nats) |
+| --- | ---: | ---: | ---: |
+| VAE | 224.3125 | 79.89% | 2.2605 |
+| GAN | 56.9913 | 92.05% | 2.2304 |
+| Real vs real control | 1.5449 | 99.00% | 2.3013 |
+| Uniform random pixels | 1123.5248 | 72.82% | 0.8625 |
+
+All rows use the same CNN and sample count. Lower distance means closer Gaussian CNN feature statistics in this run. Confidence and entropy describe classifier predictions and need visual inspection for context.
+
+| VAE samples | GAN samples |
+| --- | --- |
+| ![VAE generated digits](results/benchmark/vae_samples.png) | ![GAN generated digits](results/benchmark/gan_samples.png) |
+
+The grids show the first 64 generated images from the shared evaluation noise, without manual sample selection. See the [training curves](results/benchmark/training.png), [latent interpolation](results/benchmark/interpolation.png) and [full run manifest](results/benchmark/metrics.json). These are single-seed results, not a general ranking of GANs and VAEs.
+
 ## Run in GitHub Codespaces
 
 [Open in Codespaces](https://codespaces.new/Parisa6Izadyar/generative-AI)
@@ -54,6 +73,8 @@ python -m gan_vae train --preset full --output results/full --resume
 ```
 
 Resume restores completed epochs, model and optimizer states, random-number state and shuffle order. It requires the same configuration, data and source files. An unfinished epoch is repeated from its last saved boundary. `--overwrite` starts fresh instead.
+
+The full experiment can also run on GitHub: open **Actions → Full MNIST benchmark → Run workflow**. Its downloadable artifact contains metrics, figures, trained models and epoch checkpoints for 30 days. The workflow also reloads the saved models and verifies every recorded diagnostic. The ordinary test workflow uses synthetic tensors and does not download MNIST.
 
 ## Saved outputs and inference
 
