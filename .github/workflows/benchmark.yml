@@ -1,0 +1,39 @@
+name: Full MNIST benchmark
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      OMP_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "1"
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install CPU dependencies
+        run: |
+          python -m pip install torch==2.9.1 torchvision==0.24.1 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -r requirements.txt
+      - name: Train and evaluate the full MNIST experiment
+        run: python -m gan_vae train --preset full --download --output results/full
+      - name: Recompute diagnostics from saved models
+        run: python scripts/check_saved_models.py --run results/full
+      - name: Check the inference command
+        run: python -m gan_vae generate --checkpoint results/full/models.pt --output results/reloaded --seed 123
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: mnist-full-benchmark
+          path: results/full/
+          if-no-files-found: warn
+          retention-days: 30
